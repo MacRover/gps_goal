@@ -1,15 +1,15 @@
 <launch>
   <env name="ROSCONSOLE_FORMAT" value="[${severity}][${thread}][${node}/${function}:${line}]: ${message}"/>
 
-  <arg name="origin" default="MDRS"/>
+  <arg name="origin" default="MRDS"/>
   <node pkg="swri_transform_util" type="initialize_origin.py" name="initialize_origin" output="screen">
-    <param name="local_xy_frame" value="/world"/>
+    <param name="local_xy_frame" value="/map"/>
     <param name="local_xy_origin" value="$(arg origin)"/> <!-- setting "auto" here will set the origin to the first GPS fix that it recieves -->
-    <remap from="gps" to="gps"/>
+    <remap from="gps" to="/ublox/fix"/>
     <rosparam param="local_xy_origins">
-      [{ name: MDRS,
-         latitude: 38.40630,
-         longitude: -110.79201,
+      [{ name: MRDS,
+         latitude: 43.260403, 
+         longitude: -79.919635,
          altitude: 0.0,
          heading: 0.0}]
     </rosparam>
